@@ -41,7 +41,7 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
             beendeAufnahme(success: true)
             
             // speichert Aufnahmetitel und Dauer
-            let aufnahme_dauer = String(format: "%.2fs", spurDauer(for: aufnahme_url))
+            let aufnahme_dauer = String(format: "%:2fs", spurDauer(for: aufnahme_url))
             let aufnahme = Spur(name: aufnahme_titel, dauer: aufnahme_dauer)
             print("The duration of the recorded audio is " + aufnahme_dauer)
             spuren.append(aufnahme)
