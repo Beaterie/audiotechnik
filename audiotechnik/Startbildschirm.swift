@@ -12,11 +12,13 @@ import os
 import AVFoundation
 
 class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
+    
+    // Membervariablen: Aufnahme
     @IBOutlet weak var aufnahme_knopf: UIButton!
     
-    // Membervariablen
     var recordingSession: AVAudioSession!
     var recorder: AVAudioRecorder!
+    
     var aufnahme_titel: String!
     var aufnahme_url: URL!
     
@@ -25,6 +27,9 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
         Spur(name: "Spur 2", dauer: "00:45"),
         Spur(name: "Spur 3", dauer: "00:57")*/
     ]
+    
+    // Membervariablen: Wiedergabe
+
     
     // ---------------------------------
     
@@ -36,8 +41,9 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
             beendeAufnahme(success: true)
             
             // speichert Aufnahmetitel und Dauer
-            let aufnahme = Spur(name: aufnahme_titel, dauer: String(spurDauer(for: aufnahme_url)))
-            print("The duration of the recorded audio is " + String(spurDauer(for: aufnahme_url)))
+            let aufnahme_dauer = String(format: "%.2fs", spurDauer(for: aufnahme_url))
+            let aufnahme = Spur(name: aufnahme_titel, dauer: aufnahme_dauer)
+            print("The duration of the recorded audio is " + aufnahme_dauer)
             spuren.append(aufnahme)
         }
     }
