@@ -19,18 +19,12 @@ class AufnahmenController: UITableViewController {
     // Zurück zum Startbildschirm
     @IBAction func zurueckZumStartbildschirm(_ sender: Any) {
         performSegue(withIdentifier: "zumStartbildschirm", sender: self)
-        print("PENIS")
     }
     // Übermitteln der Membervariable an AufnahmeController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        print("PENIS1")
         if let nextScene = segue.destination as? Startbildschirm {
-            print("PENIS2")
             if segue.identifier == "zumStartbildschirm" {
-                print("PENIS3")
-//                let scene = nextScene.viewControllers[0] as! Startbildschirm
                 nextScene.spuren = spuren!
-                print("PENIS4")
             }
         }
     }
