@@ -29,6 +29,7 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
     ]
     
     // Membervariablen: Wiedergabe
+    var players: [AVAudioPlayer] = [] // erstellt eine Playerinstanz pro Audiospur
 
     
     // ---------------------------------
@@ -129,6 +130,7 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
     // ------------------------------------------------
     
     func spurDauer(for spur_url: URL) -> Double {
+        // gibt die Dauer einer Audioaufnahmespur in Sekunden zurueck
         let asset = AVURLAsset(url: spur_url)
         return Double(CMTimeGetSeconds(asset.duration))
     }
