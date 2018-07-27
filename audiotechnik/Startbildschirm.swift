@@ -118,8 +118,17 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
     // Gesamtkomposition (alle Spuren gleichzeitig) abspielen
     @IBAction func kompositionAbspielen(_ sender: Any) {
         // regelt die simultane Wiedergabe fuer alle gespeicherten Player
-        for player in players {
-            audioWiedergabe(player: player)
+        if players.count != 0 {
+            for player in players {
+                audioWiedergabe(player: player)
+            }
+        } else {
+            let alert = UIAlertController(title: "Keine Aufnahmen", message: "Es existieren keine Aufnahmen die abgespielt werden können.", preferredStyle: .alert)
+            
+            alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
+            self.present(alert, animated: true)
+            
+            os_log("Failed to play audio!", log: OSLog.default, type: .error)
         }
     }
     
