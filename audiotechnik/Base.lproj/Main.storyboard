@@ -49,17 +49,17 @@
                                             <segue destination="q2e-U2-IvN" kind="presentation" identifier="zeigeAufnahmen" id="u26-UJ-Nkr"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Ls3-1Q-xYV">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="N8U-9I-CEr">
                                         <rect key="frame" x="0.0" y="232" width="275" height="90"/>
                                         <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="90" id="vdv-sa-4aX"/>
+                                            <constraint firstAttribute="height" constant="90" id="H6V-8k-4uF"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
                                         <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <state key="normal" title="Gesamtkomposition abspielen"/>
                                         <connections>
-                                            <action selector="kompositionAbspielen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="o5r-me-kpe"/>
+                                            <action selector="kompositionAbspielen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ybx-I9-lc5"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -75,6 +75,7 @@
                     </view>
                     <connections>
                         <outlet property="aufnahme_knopf" destination="eOY-hb-c9x" id="cwC-lU-JTq"/>
+                        <outlet property="wiedergabe_knopf" destination="N8U-9I-CEr" id="xut-57-FTx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>

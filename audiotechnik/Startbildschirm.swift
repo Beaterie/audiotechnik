@@ -29,7 +29,8 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
     ]
     
     // Membervariablen: Wiedergabe
-    var players: [AVAudioPlayer] = [] // erstellt eine Playerinstanz pro Audiospur
+    @IBOutlet weak var wiedergabe_knopf: UIButton!
+    var players: [AVAudioPlayer] = [] // erstellt eine Playerinstanz pro verfügbarer Audiospur
 
     
     // ---------------------------------
@@ -42,7 +43,7 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
             beendeAufnahme(success: true)
             
             // speichert Aufnahmetitel und Dauer
-            let aufnahme_dauer = String(format: "%:2fs", spurDauer(for: aufnahme_url))
+            let aufnahme_dauer = String(format: "%.2fs", spurDauer(for: aufnahme_url))
             let aufnahme = Spur(name: aufnahme_titel, dauer: aufnahme_dauer)
             print("The duration of the recorded audio is " + aufnahme_dauer)
             spuren.append(aufnahme)
@@ -80,6 +81,8 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
     // ---------------------------------
 
     func beendeAufnahme(success: Bool) {
+        var tmp_player: AVAudioPlayer!
+        
         recorder.stop()
         recorder = nil
         
@@ -88,6 +91,14 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
         if success {
             aufnahme_knopf.setTitle("Neue Spur aufnehmen", for: .normal)
             alert = UIAlertController(title: "Aufnahme erfolgreich", message: "Die Aufnahme wurde gespeichert", preferredStyle: .alert)
+            
+            do {
+                try tmp_player = AVAudioPlayer(contentsOf: aufnahme_url)
+                players.append(tmp_player)
+            } catch {
+                // Error: File not loaded
+                os_log("Could not load file!", log: OSLog.default, type: .error)
+            }
         } else {
             aufnahme_knopf.setTitle("Neue Spur aufnehmen", for: .normal)
             
@@ -106,7 +117,25 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
     
     // Gesamtkomposition (alle Spuren gleichzeitig) abspielen
     @IBAction func kompositionAbspielen(_ sender: Any) {
+        // regelt die simultane Wiedergabe fuer alle gespeicherten Player
+        for player in players {
+            audioWiedergabe(player: player)
+        }
     }
+    
+    // ---------------------------------
+    
+    func audioWiedergabe(player: AVAudioPlayer) {
+        // spielt Audioaufnahme ab oder pausiert sie
+        if !player.isPlaying {
+            player.play()
+            wiedergabe_knopf.setTitle("Gesamtkomposition pausieren", for: .normal)
+        } else {
+            player.pause()
+            wiedergabe_knopf.setTitle("Gesamtkomposition abspielen", for: .normal)
+        }
+    }
+    
     // ---------------------------------
     
     
