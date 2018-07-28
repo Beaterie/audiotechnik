@@ -126,6 +126,7 @@
                                 <connections>
                                     <outlet property="dauerLabel" destination="SIm-Ok-i5v" id="6yJ-Fx-jJW"/>
                                     <outlet property="nameLabel" destination="djc-bc-E43" id="9vQ-cc-ROC"/>
+                                    <segue destination="dqx-cj-Jsf" kind="showDetail" identifier="zumAufnahmeEditor" id="Bxz-5n-fhR"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -135,7 +136,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Aufnahmen" id="trl-ve-qec">
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="72z-Di-zBN">
+                        <barButtonItem key="leftBarButtonItem" title="Zurück" id="72z-Di-zBN">
                             <connections>
                                 <action selector="zurueckZumStartbildschirm:" destination="dO1-fh-II7" id="wbq-qu-06L"/>
                             </connections>
@@ -149,6 +150,100 @@
                 <exit id="oSc-3w-H6G" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2192.8000000000002" y="63.418290854572717"/>
+        </scene>
+        <!--Aufnahme Editor-->
+        <scene sceneID="wDW-Vg-Ebv">
+            <objects>
+                <viewController id="dqx-cj-Jsf" customClass="AufnahmeEditor" customModule="audiotechnik" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="YAx-Hm-PLs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="5Cw-n9-h6v">
+                                <rect key="frame" x="50" y="40" width="275" height="585"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wt0-0g-mS3">
+                                        <rect key="frame" x="0.0" y="0.0" width="275" height="60"/>
+                                        <color key="backgroundColor" red="0.66422420739999999" green="0.66424006219999998" blue="0.66423153879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="60" id="zto-Qa-YlU"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                        <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Zurück"/>
+                                        <connections>
+                                            <segue destination="6Je-H4-wXL" kind="unwind" unwindAction="zumAufnahmeControllerWithSegue:" id="uI4-9I-wMX"/>
+                                        </connections>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QWI-wu-Umn">
+                                        <rect key="frame" x="0.0" y="75" width="275" height="90"/>
+                                        <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="90" id="bqX-KU-gGJ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                        <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Diese Spur abspielen"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TYN-ax-vIm">
+                                        <rect key="frame" x="0.0" y="180" width="275" height="90"/>
+                                        <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="90" id="SZv-fB-KR9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                        <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Effekt 1 aktivieren"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZFJ-72-ntj">
+                                        <rect key="frame" x="0.0" y="285" width="275" height="90"/>
+                                        <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="90" id="y6r-dv-2Vk"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                        <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Effekt 2 aktivieren"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TDw-mV-sJh">
+                                        <rect key="frame" x="0.0" y="390" width="275" height="90"/>
+                                        <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="90" id="9ou-cP-CI9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                        <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Effekt 3 aktivieren"/>
+                                    </button>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cih-Dv-pl4">
+                                        <rect key="frame" x="0.0" y="495" width="275" height="90"/>
+                                        <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="90" id="6SZ-RB-gmg"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="22"/>
+                                        <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Effekt 4 aktivieren"/>
+                                    </button>
+                                </subviews>
+                            </stackView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="5Cw-n9-h6v" firstAttribute="leading" secondItem="Df4-0a-OGc" secondAttribute="leading" constant="50" id="0uC-z1-ZXC"/>
+                            <constraint firstItem="5Cw-n9-h6v" firstAttribute="top" secondItem="Df4-0a-OGc" secondAttribute="top" constant="20" id="4FF-dR-oZS"/>
+                            <constraint firstItem="Df4-0a-OGc" firstAttribute="trailing" secondItem="5Cw-n9-h6v" secondAttribute="trailing" constant="50" id="LtS-Ys-6n0"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="Df4-0a-OGc"/>
+                    </view>
+                    <connections>
+                        <segue destination="6Je-H4-wXL" kind="unwind" identifier="zumAufnahmeController" unwindAction="zumAufnahmeControllerWithSegue:" id="Wyq-O7-V9h"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NRM-AE-Gw6" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="6Je-H4-wXL" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="3078" y="63"/>
         </scene>
         <!--Aufnahmeverzeichnis-->
         <scene sceneID="l4Q-Nu-QgY">

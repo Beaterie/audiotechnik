@@ -21,6 +21,7 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
     
     var aufnahme_titel: String!
     var aufnahme_url: URL!
+    var aufnahme_player: AVAudioPlayer!
     
     var spuren: [Spur] = [
         /*Spur(name: "Spur 1", dauer: "01:00"),
@@ -28,12 +29,20 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
         Spur(name: "Spur 3", dauer: "00:57")*/
     ]
     
+    let settings = [
+        AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
+        AVSampleRateKey: 44100,
+        AVNumberOfChannelsKey: 1,
+        AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
+    ]
+    
     // Membervariablen: Wiedergabe
     @IBOutlet weak var wiedergabe_knopf: UIButton!
-    var players: [AVAudioPlayer] = [] // erstellt eine Playerinstanz pro verfügbarer Audiospur
+//    var players: [AVAudioPlayer] = [] // erstellt eine Playerinstanz pro verfügbarer Audiospur
 
-    
     // ---------------------------------
+    
+    
     
     // Aufnahme starten/beenden
     @IBAction func spurAufnehmen(_ sender: Any) {
@@ -44,28 +53,21 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
             
             // speichert Aufnahmetitel und Dauer
             let aufnahme_dauer = String(format: "%.2fs", spurDauer(for: aufnahme_url))
-            let aufnahme = Spur(name: aufnahme_titel, dauer: aufnahme_dauer)
+            let aufnahme = Spur(name: aufnahme_titel, dauer: aufnahme_dauer, player: aufnahme_player)
             print("The duration of the recorded audio is " + aufnahme_dauer)
             spuren.append(aufnahme)
         }
     }
-    
     // ---------------------------------
+    
     
     func starteAufnahme() {
         aufnahme_titel = "Spur" + String(spuren.count+1) + ".m4a"
         aufnahme_url = getDocumentsDirectory().appendingPathComponent(aufnahme_titel)
         print("Recorded audio will be stored at: " + aufnahme_titel) // Aufruf funktioniert nicht im Log
-        
-        let settings = [
-            AVFormatIDKey: Int(kAudioFormatMPEG4AAC),
-            AVSampleRateKey: 44100,
-            AVNumberOfChannelsKey: 1,
-            AVEncoderAudioQualityKey: AVAudioQuality.high.rawValue
-        ]
-        
+
         do {
-            recorder = try AVAudioRecorder(url: aufnahme_url, settings: settings)
+            recorder = try AVAudioRecorder(url: aufnahme_url, settings: self.settings)
             recorder.prepareToRecord()
             recorder.delegate = self
             recorder.record()
@@ -77,11 +79,11 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
             beendeAufnahme(success: false)
         }
     }
-    
     // ---------------------------------
 
+    
+    
     func beendeAufnahme(success: Bool) {
-        var tmp_player: AVAudioPlayer!
         
         recorder.stop()
         recorder = nil
@@ -93,8 +95,9 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
             alert = UIAlertController(title: "Aufnahme erfolgreich", message: "Die Aufnahme wurde gespeichert", preferredStyle: .alert)
             
             do {
-                try tmp_player = AVAudioPlayer(contentsOf: aufnahme_url)
-                players.append(tmp_player)
+                try aufnahme_player = AVAudioPlayer(contentsOf: aufnahme_url)
+//                players.append(tmp_player)
+//                spuren[spuren.count].set_player(player: tmp_player)
             } catch {
                 // Error: File not loaded
                 os_log("Could not load file!", log: OSLog.default, type: .error)
@@ -111,16 +114,15 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
         
         self.present(alert, animated: true)
     }
-    
-    
     // ---------------------------------
+    
     
     // Gesamtkomposition (alle Spuren gleichzeitig) abspielen
     @IBAction func kompositionAbspielen(_ sender: Any) {
         // regelt die simultane Wiedergabe fuer alle gespeicherten Player
-        if players.count != 0 {
-            for player in players {
-                audioWiedergabe(player: player)
+        if spuren.count != 0 {
+            for spur in spuren {
+                audioWiedergabe(player: spur.get_player())
             }
         } else {
             let alert = UIAlertController(title: "Keine Aufnahmen", message: "Es existieren keine Aufnahmen die abgespielt werden können.", preferredStyle: .alert)
@@ -131,8 +133,8 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
             os_log("Failed to play audio!", log: OSLog.default, type: .error)
         }
     }
-    
     // ---------------------------------
+    
     
     func audioWiedergabe(player: AVAudioPlayer) {
         // spielt Audioaufnahme ab oder pausiert sie
@@ -144,7 +146,6 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
             wiedergabe_knopf.setTitle("Gesamtkomposition abspielen", for: .normal)
         }
     }
-    
     // ---------------------------------
     
     
@@ -164,23 +165,26 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
             }
         }
     }
-    
     // ------------------------------------------------
+    
+    
     
     func spurDauer(for spur_url: URL) -> Double {
         // gibt die Dauer einer Audioaufnahmespur in Sekunden zurueck
         let asset = AVURLAsset(url: spur_url)
         return Double(CMTimeGetSeconds(asset.duration))
     }
-    
     // ------------------------------------------------
+    
+    
     
     func getDocumentsDirectory() -> URL {
         let paths = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
         return paths[0]
     }
-    
     // ------------------------------------------------
+    
+    
     
     func requestRecordPermission() {
         // Erbitte Erlaubnis, um das Mikrofon zu verwenden und Audio aufzunehmen
@@ -202,14 +206,14 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
             os_log("Failed to record audio!", log: OSLog.default, type: .error)
         }
     }
-    
     // ------------------------------------------------
+    
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-    
     // ------------------------------------------------
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()

@@ -15,6 +15,7 @@
 		D299BAE52109BEC10062530B /* AufnahmenController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D299BAE42109BEC10062530B /* AufnahmenController.swift */; };
 		D299BAE72109CBA10062530B /* Spur.swift in Sources */ = {isa = PBXBuildFile; fileRef = D299BAE62109CBA10062530B /* Spur.swift */; };
 		D299BAE92109CE4C0062530B /* Startbildschirm.swift in Sources */ = {isa = PBXBuildFile; fileRef = D299BAE82109CE4C0062530B /* Startbildschirm.swift */; };
+		D2ACBB76210C56B000972098 /* AufnahmeEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2ACBB75210C56B000972098 /* AufnahmeEditor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +29,7 @@
 		D299BAE42109BEC10062530B /* AufnahmenController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AufnahmenController.swift; sourceTree = "<group>"; };
 		D299BAE62109CBA10062530B /* Spur.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Spur.swift; sourceTree = "<group>"; };
 		D299BAE82109CE4C0062530B /* Startbildschirm.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Startbildschirm.swift; sourceTree = "<group>"; };
+		D2ACBB75210C56B000972098 /* AufnahmeEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AufnahmeEditor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -66,6 +68,7 @@
 				D299BAE22109BBB50062530B /* SpurenZelle.swift */,
 				D27D48402106026500F33482 /* Main.storyboard */,
 				D299BAE42109BEC10062530B /* AufnahmenController.swift */,
+				D2ACBB75210C56B000972098 /* AufnahmeEditor.swift */,
 				D27D48432106026700F33482 /* Assets.xcassets */,
 				D27D48452106026700F33482 /* LaunchScreen.storyboard */,
 				D27D48482106026700F33482 /* Info.plist */,
@@ -147,6 +150,7 @@
 				D299BAE32109BBB50062530B /* SpurenZelle.swift in Sources */,
 				D299BAE92109CE4C0062530B /* Startbildschirm.swift in Sources */,
 				D299BAE72109CBA10062530B /* Spur.swift in Sources */,
+				D2ACBB76210C56B000972098 /* AufnahmeEditor.swift in Sources */,
 				D27D483D2106026500F33482 /* AppDelegate.swift in Sources */,
 				D299BAE52109BEC10062530B /* AufnahmenController.swift in Sources */,
 			);
@@ -294,7 +298,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZX8PCWB4XS;
+				DEVELOPMENT_TEAM = 2A4RLM2VMS;
 				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = audiotechnik/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
@@ -316,7 +320,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = ZX8PCWB4XS;
+				DEVELOPMENT_TEAM = 2A4RLM2VMS;
 				ENABLE_TESTABILITY = YES;
 				INFOPLIST_FILE = audiotechnik/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;

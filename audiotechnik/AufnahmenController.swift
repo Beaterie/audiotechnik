@@ -20,11 +20,22 @@ class AufnahmenController: UITableViewController {
     @IBAction func zurueckZumStartbildschirm(_ sender: Any) {
         performSegue(withIdentifier: "zumStartbildschirm", sender: self)
     }
-    // Übermitteln der Membervariable an AufnahmeController
+    // ---------------------------------
+    
+    
+    // Übermitteln der Membervariable an Startbildschirm/AufnahmeEditor
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let nextScene = segue.destination as? Startbildschirm {
             if segue.identifier == "zumStartbildschirm" {
                 nextScene.spuren = spuren!
+            }
+        }
+        else if let nextScene = segue.destination as? AufnahmeEditor,
+            let indexPath = self.tableView.indexPathForSelectedRow  {
+            if segue.identifier == "zumAufnahmeEditor" {
+                nextScene.spur = self.spuren?[indexPath.row]
+                nextScene.index = indexPath.row
+                nextScene.title = self.spuren?[indexPath.row].name
             }
         }
     }
@@ -86,11 +97,9 @@ class AufnahmenController: UITableViewController {
     
     
     
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.reloadData()
 
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -103,6 +112,12 @@ class AufnahmenController: UITableViewController {
         super.didReceiveMemoryWarning()
     }
     
+    
+    // Übergang zurück zu diesem Bildschirm
+    @IBAction func zumAufnahmeController(segue: UIStoryboardSegue) {
+        print("Zurück zum AufnahmeController")
+    }
+    // ---------------------------------
  
     /*
     // Override to support conditional editing of the table view.

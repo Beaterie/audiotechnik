@@ -2,18 +2,22 @@
 //  AufnahmeEditor.swift
 //  audiotechnik
 //
-//  Created by Jana Puschmann on 27.07.18.
-//  Copyright © 2018 Josef Roth. All rights reserved.
+//  Created by Jana Puschmann und Josef Roth on 01.07.18.
+//  Copyright © 2018 Jana Puschmann und Josef Roth. All rights reserved.
 //
+
 
 import UIKit
 
 class AufnahmeEditor: UIViewController {
+    
+    // Member
+    var index: Int? = nil
+    var spur: Spur? = nil
+
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
     }
 
     override func didReceiveMemoryWarning() {
@@ -22,14 +26,13 @@ class AufnahmeEditor: UIViewController {
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    // Übermitteln der Membervariable an AufnahmenController
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if let nextScene = segue.destination as? AufnahmenController {
+            nextScene.spuren![index!] = self.spur!
+            nextScene.tableView.reloadData()
+        }
     }
-    */
+    // ---------------------------------
 
 }

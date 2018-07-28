@@ -6,7 +6,7 @@
 //  Copyright © 2018 Jana Puschmann und Josef Roth. All rights reserved.
 //
 
-
+import AVFoundation
 import Foundation
 
 class Spur {
@@ -14,14 +14,45 @@ class Spur {
     // Membervariablen
     var name: String
     var dauer: String
-    //var player
+    var player: AVAudioPlayer?
     // ---------------------------------
     
     
     // Konstruktor
+    init(name: String, dauer: String, player: AVAudioPlayer) {
+        self.name = name
+        self.dauer = dauer
+        self.player = player
+    }
     init(name: String, dauer: String) {
         self.name = name
         self.dauer = dauer
+        self.player = nil
+    }
+    // ---------------------------------
+    
+    
+    // Getter
+    func get_name() -> String {
+        return self.name
+    }
+    func get_dauer() -> String{
+        return self.dauer
+    }
+    func get_player() -> AVAudioPlayer {
+        return self.player!
+    }
+    // ---------------------------------
+    
+    // Setter
+    func set_name(name: String) {
+        self.name = name
+    }
+    func set_dauer(dauer: String) {
+        self.dauer = dauer
+    }
+    func set_player(player: AVAudioPlayer) {
+        self.player = player
     }
     // ---------------------------------
 }
