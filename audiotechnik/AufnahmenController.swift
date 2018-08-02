@@ -69,10 +69,10 @@ class AufnahmenController: UITableViewController {
     
     // Zusatzoptionen pro Zelle (Abspielen und Löschen)
     override func tableView(_ tableView: UITableView, editActionsForRowAt: IndexPath) -> [UITableViewRowAction]? {
-        let play = UITableViewRowAction(style: .normal, title: "Abspielen") { action, index in
-            print("Abgespielt.")
-        }
-        play.backgroundColor = .blue //UIColor(red: 0, green: 0.549, blue: 1, alpha: 1)
+//        let play = UITableViewRowAction(style: .normal, title: "Abspielen") { action, index in
+//            print("Abgespielt.")
+//        }
+//        play.backgroundColor = .blue //UIColor(red: 0, green: 0.549, blue: 1, alpha: 1)
         
         let delete = UITableViewRowAction(style: .normal, title: "Löschen") { action, index in
             print("Gelöscht?")
@@ -91,7 +91,8 @@ class AufnahmenController: UITableViewController {
         }
         delete.backgroundColor = .red
         
-        return [play, delete]
+//        return [play, delete]
+        return [delete]
     }
     // ---------------------------------
     

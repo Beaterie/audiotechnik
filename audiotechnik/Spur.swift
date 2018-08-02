@@ -14,7 +14,8 @@ class Spur {
     // Membervariablen
     var name: String
     var dauer: String
-    var player: AVAudioPlayer?
+    var original_player: AVAudioPlayer?
+    var modified_player: AVAudioPlayer?
     // ---------------------------------
     
     
@@ -22,12 +23,14 @@ class Spur {
     init(name: String, dauer: String, player: AVAudioPlayer) {
         self.name = name
         self.dauer = dauer
-        self.player = player
+        self.original_player = player
+        self.modified_player = player
     }
     init(name: String, dauer: String) {
         self.name = name
         self.dauer = dauer
-        self.player = nil
+        self.original_player = nil
+        self.modified_player = nil
     }
     // ---------------------------------
     
@@ -39,8 +42,11 @@ class Spur {
     func get_dauer() -> String{
         return self.dauer
     }
-    func get_player() -> AVAudioPlayer {
-        return self.player!
+    func get_original_player() -> AVAudioPlayer {
+        return self.original_player!
+    }
+    func get_modified_player() -> AVAudioPlayer {
+        return self.modified_player!
     }
     // ---------------------------------
     
@@ -51,8 +57,11 @@ class Spur {
     func set_dauer(dauer: String) {
         self.dauer = dauer
     }
-    func set_player(player: AVAudioPlayer) {
-        self.player = player
+    func set_original_player(player: AVAudioPlayer) {
+        self.original_player = player
+    }
+    func set_modified_player(player: AVAudioPlayer) {
+        self.modified_player = player
     }
     // ---------------------------------
 }

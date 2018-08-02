@@ -14,11 +14,25 @@ import AVFoundation
 class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     
     // Membervariablen: Aufnahme
-    @IBOutlet weak var aufnahme_knopf: UIButton!
+    @IBOutlet weak var metronomeOutlet: UIButton!
+    @IBAction func metronomeButton(_ sender: UIButton) {
+        if metronomeMode == false {
+            metronomeOutlet.setTitle("Metronom deaktivieren", for: .normal)
+        }
+        else {
+            metronomeOutlet.setTitle("Metronom aktivieren", for: .normal)
+        }
+        metronomeMode = !metronomeMode
+    }
     
-    var recordingSession: AVAudioSession!
+    var metronomeActivity: Bool = false
+    var metronomeMode: Bool = false
+    
+    var recordingSession = AVAudioSession.sharedInstance()
     var recorder: AVAudioRecorder!
+    var metronome_player: AVAudioPlayer!
     
+    @IBOutlet weak var aufnahme_knopf: UIButton!
     var aufnahme_titel: String!
     var aufnahme_url: URL!
     var aufnahme_player: AVAudioPlayer!
@@ -47,8 +61,29 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
     // Aufnahme starten/beenden
     @IBAction func spurAufnehmen(_ sender: Any) {
         if recorder == nil {
-            starteAufnahme()
+            // play metronome sound
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) { // change 2 to desired number of seconds
+                if self.metronomeMode == true {
+                    do {
+                        let metronome_url = Bundle.main.url(forResource: "4-cowbell", withExtension: "mp3", subdirectory: "audioFiles")
+                        try self.metronome_player = AVAudioPlayer(contentsOf: metronome_url!)
+                        self.metronome_player.volume = 0.8
+                        self.metronome_player.prepareToPlay()
+                        self.metronome_player.play()
+                        self.metronomeActivity = true
+                    } catch {
+                        // Error: File not loaded
+                        os_log("Could not load file!", log: OSLog.default, type: .error)
+                        self.metronomeActivity = false
+                    }
+                }
+                self.starteAufnahme()
+            }
         } else {
+            if metronomeActivity == true {
+                metronome_player.stop()
+                metronomeActivity = false
+            }
             beendeAufnahme(success: true)
             
             // speichert Aufnahmetitel und Dauer
@@ -64,13 +99,20 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
     func starteAufnahme() {
         aufnahme_titel = "Spur" + String(spuren.count+1) + ".m4a"
         aufnahme_url = getDocumentsDirectory().appendingPathComponent(aufnahme_titel)
-        print("Recorded audio will be stored at: " + aufnahme_titel) // Aufruf funktioniert nicht im Log
+        print("Recorded audio will be stored at: " + aufnahme_titel + " as \(aufnahme_url!)") // Aufruf funktioniert nicht im Log
 
         do {
+//            let metronom_url = Bundle.main.url(forResource: "1-piano", withExtension: "mp3", subdirectory: "audioFiles")
+//            print("\(metronom_url!)")
+//
+//            var metronom: AVAudioPlayer = try AVAudioPlayer(contentsOf: metronom_url!)
+//            metronom.play()
+            
             recorder = try AVAudioRecorder(url: aufnahme_url, settings: self.settings)
             recorder.prepareToRecord()
             recorder.delegate = self
             recorder.record()
+//            metronom.play()
             
             if recorder.isRecording {
                 aufnahme_knopf.setTitle("Aufnahme beenden", for: .normal)
@@ -121,8 +163,10 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
     @IBAction func kompositionAbspielen(_ sender: Any) {
         // regelt die simultane Wiedergabe fuer alle gespeicherten Player
         if spuren.count != 0 {
-            for spur in spuren {
-                audioWiedergabe(player: spur.get_player())
+            DispatchQueue.main.asyncAfter(deadline: .now() + 5) { // change 2 to
+                for spur in self.spuren {
+                    self.audioWiedergabe(player: spur.get_modified_player())
+                }
             }
         } else {
             let alert = UIAlertController(title: "Keine Aufnahmen", message: "Es existieren keine Aufnahmen die abgespielt werden können.", preferredStyle: .alert)
@@ -168,9 +212,8 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
     // ------------------------------------------------
     
     
-    
+    // Rückgabe der Dauer einer Audioaufnahmespur in Sekunden
     func spurDauer(for spur_url: URL) -> Double {
-        // gibt die Dauer einer Audioaufnahmespur in Sekunden zurueck
         let asset = AVURLAsset(url: spur_url)
         return Double(CMTimeGetSeconds(asset.duration))
     }
@@ -191,9 +234,10 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
         recordingSession = AVAudioSession.sharedInstance()
         do {
             try recordingSession.setCategory(AVAudioSessionCategoryPlayAndRecord)
+                                             //with: .defaultToSpeaker)
             try recordingSession.overrideOutputAudioPort(AVAudioSessionPortOverride.speaker)
             try recordingSession.setActive(true)
-            recordingSession.requestRecordPermission() { [unowned self] allowed in
+            recordingSession.requestRecordPermission() { [] allowed in
                 DispatchQueue.main.async {
                     if allowed {
                        os_log("Recording permission granted.", log: OSLog.default, type: .info)
@@ -217,7 +261,6 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         // Erbitte Aufnahmeerlaubnis vom Nutzer
         requestRecordPermission()
     }
