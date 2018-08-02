@@ -14,16 +14,8 @@ import AVFoundation
 class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerDelegate {
     
     // Membervariablen: Aufnahme
-    @IBOutlet weak var metronomeOutlet: UIButton!
-    @IBAction func metronomeButton(_ sender: UIButton) {
-        if metronomeMode == false {
-            metronomeOutlet.setTitle("Metronom deaktivieren", for: .normal)
-        }
-        else {
-            metronomeOutlet.setTitle("Metronom aktivieren", for: .normal)
-        }
-        metronomeMode = !metronomeMode
-    }
+    @IBOutlet weak var activateMetronome: UIButton!
+    @IBOutlet weak var deactivateMetronome: UIButton!
     
     var metronomeActivity: Bool = false
     var metronomeMode: Bool = false
@@ -56,7 +48,26 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
 
     // ---------------------------------
     
+    @IBAction func activateMetronomeAction(_ sender: UIButton) {
+        if !metronomeMode {
+            metronomeMode = !metronomeMode
+            os_log("Metronome activated.", log: OSLog.default, type: .info)
+        }
+    }
     
+    // ---------------------------------
+
+    
+    @IBAction func deactivateMetronomeAction(_ sender: UIButton) {
+        if metronomeMode {
+            metronomeMode = !metronomeMode
+            os_log("Metronome deactivated.", log: OSLog.default, type: .error)
+        }
+    }
+    
+
+    // ---------------------------------
+
     
     // Aufnahme starten/beenden
     @IBAction func spurAufnehmen(_ sender: Any) {
