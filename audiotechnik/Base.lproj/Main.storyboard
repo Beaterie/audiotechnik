@@ -61,7 +61,7 @@
                                         <constraints>
                                             <constraint firstAttribute="height" constant="90" id="Yjv-nq-uhs"/>
                                         </constraints>
-                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="20"/>
+                                        <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="20"/>
                                         <color key="tintColor" red="0.58072251080000004" green="0.066734083" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <size key="titleShadowOffset" width="9" height="0.0"/>
                                         <state key="normal" title="Neue Spur aufnehmen"/>
@@ -87,7 +87,7 @@
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="N8U-9I-CEr">
                                                 <rect key="frame" x="0.0" y="0.0" width="101.5" height="90"/>
-                                                <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="90" id="H6V-8k-4uF"/>
                                                 </constraints>
@@ -95,37 +95,47 @@
                                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Komposition abspielen"/>
                                                 <connections>
-                                                    <action selector="kompositionAbspielen:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Ybx-I9-lc5"/>
+                                                    <action selector="playButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="sh9-ff-dcn"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="4Ae-Bw-Mcr">
                                                 <rect key="frame" x="111.5" y="0.0" width="102" height="90"/>
-                                                <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="90" id="9CM-i0-WkH"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Wiedergabe pausieren"/>
+                                                <connections>
+                                                    <action selector="pauseButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="wDe-IY-Njc"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Saw-Kx-twg">
                                                 <rect key="frame" x="223.5" y="0.0" width="101.5" height="90"/>
-                                                <color key="backgroundColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="90" id="AIX-N5-lkh"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Wiedergabe stoppen"/>
+                                                <connections>
+                                                    <action selector="stopButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xR9-QQ-A6g"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="6V2-ry-Zyj" secondAttribute="trailing" id="6sf-4V-0zb"/>
+                                    <constraint firstItem="kuQ-Es-pOL" firstAttribute="leading" secondItem="FPl-df-y0Y" secondAttribute="leading" id="GET-CG-iIn"/>
+                                    <constraint firstAttribute="trailing" secondItem="kuQ-Es-pOL" secondAttribute="trailing" id="U2F-HR-ZGG"/>
                                     <constraint firstItem="L1M-QZ-yoG" firstAttribute="leading" secondItem="FPl-df-y0Y" secondAttribute="leading" id="nCc-Fr-laT"/>
                                     <constraint firstAttribute="trailing" secondItem="L1M-QZ-yoG" secondAttribute="trailing" id="oNg-o6-CyK"/>
                                     <constraint firstItem="eOY-hb-c9x" firstAttribute="leading" secondItem="FPl-df-y0Y" secondAttribute="leading" id="rFi-mP-IkO"/>
                                     <constraint firstAttribute="trailing" secondItem="eOY-hb-c9x" secondAttribute="trailing" id="wsM-q1-uUB"/>
+                                    <constraint firstItem="6V2-ry-Zyj" firstAttribute="leading" secondItem="FPl-df-y0Y" secondAttribute="leading" id="zmL-Gf-Tzg"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -139,10 +149,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="activateMetronome" destination="BsK-YW-dg9" id="T2x-W6-ucs"/>
                         <outlet property="aufnahme_knopf" destination="eOY-hb-c9x" id="7rE-2w-AcN"/>
-                        <outlet property="deactivateMetronome" destination="o8S-Wy-HST" id="g4r-qV-Six"/>
-                        <outlet property="wiedergabe_knopf" destination="N8U-9I-CEr" id="xut-57-FTx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -239,46 +246,55 @@
                                     <segue destination="6Je-H4-wXL" kind="unwind" unwindAction="zumAufnahmeControllerWithSegue:" id="uI4-9I-wMX"/>
                                 </connections>
                             </button>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="HE2-HQ-fUK">
-                                <rect key="frame" x="25" y="139" width="325" height="425"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="HE2-HQ-fUK">
+                                <rect key="frame" x="25" y="139" width="325" height="480"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="uVl-ke-Rso">
-                                        <rect key="frame" x="0.0" y="0.0" width="325" height="50"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="325" height="60"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="JVC-mX-Edu">
-                                                <rect key="frame" x="0.0" y="0.0" width="101.5" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="101.5" height="60"/>
                                                 <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="6W1-lW-32a"/>
+                                                    <constraint firstAttribute="height" constant="60" id="6W1-lW-32a"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Spur abspielen"/>
+                                                <connections>
+                                                    <action selector="playButton:" destination="dqx-cj-Jsf" eventType="touchUpInside" id="Ooj-v4-svY"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Zk1-nI-LiN">
-                                                <rect key="frame" x="111.5" y="0.0" width="102" height="50"/>
+                                                <rect key="frame" x="111.5" y="0.0" width="102" height="60"/>
                                                 <color key="backgroundColor" red="0.0" green="0.58980089430000004" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="f4B-RM-DRg"/>
+                                                    <constraint firstAttribute="height" constant="60" id="f4B-RM-DRg"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Spur pausieren"/>
+                                                <connections>
+                                                    <action selector="pauseButton:" destination="dqx-cj-Jsf" eventType="touchUpInside" id="V9R-FL-saf"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="AiL-mm-GWV">
-                                                <rect key="frame" x="223.5" y="0.0" width="101.5" height="50"/>
+                                                <rect key="frame" x="223.5" y="0.0" width="101.5" height="60"/>
                                                 <color key="backgroundColor" red="0.0" green="0.32852089410000002" blue="0.57488495110000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="FVM-Ug-5Qd"/>
+                                                    <constraint firstAttribute="height" constant="60" id="FVM-Ug-5Qd"/>
                                                 </constraints>
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Spur stoppen"/>
+                                                <connections>
+                                                    <action selector="stopButton:" destination="dqx-cj-Jsf" eventType="touchUpInside" id="cvw-OK-BWe"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="MwG-hJ-mLI">
-                                        <rect key="frame" x="0.0" y="75" width="325" height="50"/>
+                                        <rect key="frame" x="0.0" y="80" width="325" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="cih-Dv-pl4">
                                                 <rect key="frame" x="0.0" y="0.0" width="157.5" height="50"/>
@@ -289,6 +305,9 @@
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Hall aktivieren"/>
+                                                <connections>
+                                                    <action selector="activateReverb:" destination="dqx-cj-Jsf" eventType="touchUpInside" id="Xb9-va-Qs7"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="oAf-2j-U8K">
                                                 <rect key="frame" x="167.5" y="0.0" width="157.5" height="50"/>
@@ -299,6 +318,9 @@
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Hall deaktivieren"/>
+                                                <connections>
+                                                    <action selector="deactivateReverb:" destination="dqx-cj-Jsf" eventType="touchUpInside" id="ofz-AF-LpL"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -314,6 +336,9 @@
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Echo aktivieren"/>
+                                                <connections>
+                                                    <action selector="activateDelay:" destination="dqx-cj-Jsf" eventType="touchUpInside" id="bcA-hl-NOz"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="oGx-Wr-E35">
                                                 <rect key="frame" x="167.5" y="0.0" width="157.5" height="50"/>
@@ -324,11 +349,14 @@
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Echo deaktivieren"/>
+                                                <connections>
+                                                    <action selector="deactivateDelay:" destination="dqx-cj-Jsf" eventType="touchUpInside" id="HwG-KQ-mpI"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="T50-nf-Jxj">
-                                        <rect key="frame" x="0.0" y="225" width="325" height="50"/>
+                                        <rect key="frame" x="0.0" y="220" width="325" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="fYP-Jp-n8D">
                                                 <rect key="frame" x="0.0" y="0.0" width="157.5" height="50"/>
@@ -339,6 +367,9 @@
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Tiefpass aktivieren"/>
+                                                <connections>
+                                                    <action selector="activateLowpass:" destination="dqx-cj-Jsf" eventType="touchUpInside" id="mjL-Vd-CAD"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="uf2-Tl-xlG">
                                                 <rect key="frame" x="167.5" y="0.0" width="157.5" height="50"/>
@@ -349,11 +380,14 @@
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Tiefpass deaktivieren"/>
+                                                <connections>
+                                                    <action selector="deactivateLowpass:" destination="dqx-cj-Jsf" eventType="touchUpInside" id="SLd-NC-mhR"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="TOf-AV-vB0">
-                                        <rect key="frame" x="0.0" y="300" width="325" height="50"/>
+                                        <rect key="frame" x="0.0" y="290" width="325" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="X94-fH-gWG">
                                                 <rect key="frame" x="0.0" y="0.0" width="157.5" height="50"/>
@@ -364,6 +398,9 @@
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Hochpass aktivieren"/>
+                                                <connections>
+                                                    <action selector="activateHighpass:" destination="dqx-cj-Jsf" eventType="touchUpInside" id="opv-HH-s7U"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="UPp-sg-nl5">
                                                 <rect key="frame" x="167.5" y="0.0" width="157.5" height="50"/>
@@ -374,11 +411,14 @@
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="15"/>
                                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Hochpass deaktivieren"/>
+                                                <connections>
+                                                    <action selector="deactivateHighpass:" destination="dqx-cj-Jsf" eventType="touchUpInside" id="HDI-Tf-DCd"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="pUw-i8-WqA">
-                                        <rect key="frame" x="0.0" y="375" width="325" height="50"/>
+                                        <rect key="frame" x="0.0" y="360" width="325" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="YqN-Af-F09">
                                                 <rect key="frame" x="0.0" y="0.0" width="101.5" height="50"/>
@@ -389,6 +429,9 @@
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Hohen Pitch aktivieren"/>
+                                                <connections>
+                                                    <action selector="activateHighpitch:" destination="dqx-cj-Jsf" eventType="touchUpInside" id="6OR-Sb-IwN"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="D4x-zY-bLP">
                                                 <rect key="frame" x="111.5" y="0.0" width="102" height="50"/>
@@ -399,6 +442,9 @@
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Tiefen Pitch aktivieren"/>
+                                                <connections>
+                                                    <action selector="activateLowpitch:" destination="dqx-cj-Jsf" eventType="touchUpInside" id="O0T-Og-htW"/>
+                                                </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="e4b-pl-4LE">
                                                 <rect key="frame" x="223.5" y="0.0" width="101.5" height="50"/>
@@ -409,10 +455,30 @@
                                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="13"/>
                                                 <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <state key="normal" title="Pitch-Effekte deaktivieren"/>
+                                                <connections>
+                                                    <action selector="deactivatePitch:" destination="dqx-cj-Jsf" eventType="touchUpInside" id="E84-7D-fV7"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZI9-Mm-knP">
+                                        <rect key="frame" x="0.0" y="430" width="325" height="50"/>
+                                        <color key="backgroundColor" red="0.37055522200000002" green="0.37056469920000001" blue="0.37055957319999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="Ctc-nx-1FQ"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                        <color key="tintColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <state key="normal" title="Alle Effekte zurücksetzen"/>
+                                        <connections>
+                                            <action selector="fullReset:" destination="dqx-cj-Jsf" eventType="touchUpInside" id="r5j-eS-7hq"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstItem="ZI9-Mm-knP" firstAttribute="leading" secondItem="HE2-HQ-fUK" secondAttribute="leading" id="mqu-zf-fyf"/>
+                                    <constraint firstAttribute="trailing" secondItem="ZI9-Mm-knP" secondAttribute="trailing" id="wgr-0B-dA6"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
