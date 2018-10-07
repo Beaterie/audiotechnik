@@ -16,6 +16,7 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
     // Membervariablen: Aufnahme
     var metronomeActivity: Bool = false
     var metronomeMode: Bool = true
+    var alreadyPlayed: Bool = false
     
     var recordingSession = AVAudioSession.sharedInstance()
     var recorder: AVAudioRecorder!
@@ -59,6 +60,9 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
     // Aufnahme starten/beenden
     @IBAction func spurAufnehmen(_ sender: Any) {
         if recorder == nil {
+            if  audioAVEngine.isRunning {
+                self.stop()
+            }
             
             aufnahme_knopf.setTitle("Aufnahme beenden", for: .normal)
             
@@ -156,43 +160,42 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
                 alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
                 self.present(alert, animated: true)
                 
-                os_log("Failed to play audio!", log: OSLog.default, type: .error)
+                os_log("No recordings. Failed to play audio!", log: OSLog.default, type: .error)
             }
         }
         else {
+            // Setze Wiedergabe fort
             print("Audio Engine läuft noch!")
-            self.stop()
             DispatchQueue.main.asyncAfter(deadline: .now() + self.delayToPlay) {
                 self.play()
             }
         }
     }
     @IBAction func pauseButton(_ sender: UIButton) {
-        pause()
+        self.pause()
     }
     @IBAction func stopButton(_ sender: UIButton) {
-        stop()
+        self.stop()
     }
     // ---------------------------------
     
     func pause() {
+        print("Pausing Players...")
         for spur in self.spuren {
             spur.enginePlayer.pause()
-            print("Pausing Players...")
         }
-//        audioAVEngine.pause()
     }
     func stop() {
+        print("Stopping Players...")
         for spur in self.spuren {
             spur.enginePlayer.stop()
-            print("Stopping Players...")
         }
-//        audioAVEngine.stop()
+        self.audioAVEngine.stop()
     }
     func play() {
+        print("Playing Players...")
         for spur in self.spuren {
             spur.enginePlayer.play()
-            print("Playing Players...")
         }
     }
     // ---------------------------------
@@ -281,6 +284,7 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
             try audioAVEngine.start()
         } catch {
             print("Error starting AVAudioEngine.")
+            os_log("play(): AVAudioEngine could not be started.", log: OSLog.default, type: .error)
         }
         
         for spur in self.spuren {
@@ -288,6 +292,7 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
                 spur.engineAudioFile = try AVAudioFile(forReading: spur.get_url())
             } catch {
                 print("Fehler bei der URL-Zuweisung.")
+                os_log("setUpAudioEngine(): URL could not be found.", log: OSLog.default, type: .error)
             }
             spur.enginePlayer.scheduleFile(spur.engineAudioFile, at: nil, completionHandler: nil)
         }
