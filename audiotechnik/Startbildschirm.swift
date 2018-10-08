@@ -22,7 +22,7 @@ class Startbildschirm: UIViewController, AVAudioRecorderDelegate, AVAudioPlayerD
     var recorder: AVAudioRecorder!
     var metronome_player: AVAudioPlayer!
     
-    let delayToPlay: Double = 0.0
+    let delayToPlay: Double = 2.0
     
     @IBOutlet weak var aufnahme_knopf: UIButton!
     var aufnahme_titel: String!
