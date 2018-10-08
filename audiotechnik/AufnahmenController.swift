@@ -30,12 +30,13 @@ class AufnahmenController: UITableViewController {
                 nextScene.spuren = spuren!
             }
         }
-        else if let nextScene = segue.destination as? AufnahmeEditor,
+        else if let nextScene = segue.destination as? AufnahmeTableEditor,
             let indexPath = self.tableView.indexPathForSelectedRow  {
             if segue.identifier == "zumAufnahmeEditor" {
                 nextScene.spur = self.spuren?[indexPath.row]
                 nextScene.index = indexPath.row
                 nextScene.title = self.spuren?[indexPath.row].name
+                print("Index im Controller: \(indexPath.row)")
             }
         }
     }
