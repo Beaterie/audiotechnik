@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A1BD82A8216B568C00DE55CB /* AufnahmeTableEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1BD82A7216B568C00DE55CB /* AufnahmeTableEditor.swift */; };
 		D24BBD652112F22D002091A1 /* audioFiles in Resources */ = {isa = PBXBuildFile; fileRef = D24BBD642112F22D002091A1 /* audioFiles */; };
 		D27D483D2106026500F33482 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D27D483C2106026500F33482 /* AppDelegate.swift */; };
 		D27D48422106026500F33482 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D27D48402106026500F33482 /* Main.storyboard */; };
@@ -20,6 +21,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		A1BD82A7216B568C00DE55CB /* AufnahmeTableEditor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AufnahmeTableEditor.swift; sourceTree = "<group>"; };
 		D24BBD642112F22D002091A1 /* audioFiles */ = {isa = PBXFileReference; lastKnownFileType = folder; path = audioFiles; sourceTree = "<group>"; };
 		D27D48392106026500F33482 /* audiotechnik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = audiotechnik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D27D483C2106026500F33482 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -70,6 +72,7 @@
 				D299BAE22109BBB50062530B /* SpurenZelle.swift */,
 				D27D48402106026500F33482 /* Main.storyboard */,
 				D299BAE42109BEC10062530B /* AufnahmenController.swift */,
+				A1BD82A7216B568C00DE55CB /* AufnahmeTableEditor.swift */,
 				D2ACBB75210C56B000972098 /* AufnahmeEditor.swift */,
 				D27D48432106026700F33482 /* Assets.xcassets */,
 				D27D48452106026700F33482 /* LaunchScreen.storyboard */,
@@ -156,6 +159,7 @@
 				D299BAE72109CBA10062530B /* Spur.swift in Sources */,
 				D2ACBB76210C56B000972098 /* AufnahmeEditor.swift in Sources */,
 				D27D483D2106026500F33482 /* AppDelegate.swift in Sources */,
+				A1BD82A8216B568C00DE55CB /* AufnahmeTableEditor.swift in Sources */,
 				D299BAE52109BEC10062530B /* AufnahmenController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -112,6 +112,14 @@ class AufnahmeTableEditor: UITableViewController {
     }
     
     func setupAudioEngine() {
+        let audioSession = AVAudioSession.sharedInstance()
+        
+        do {
+            try audioSession.overrideOutputAudioPort(AVAudioSessionPortOverride.speaker)
+        } catch let error as NSError {
+            print("audioSession error: \(error.localizedDescription)")
+        }
+        
         let format = audioAVEngine.inputNode.inputFormat(forBus: 0)
         audioAVEngine.attach(enginePlayer)
         audioAVEngine.attach(pitchEffect)
